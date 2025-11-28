@@ -1,35 +1,30 @@
-import Schema from "express";
-import { title } from "process";
-import { type } from "os";
-import { timeStamp } from "console";
+import mongoose from "mongoose";
+const { Schema, model } = mongoose;
 
-const Movie = new Schema({
-    title:{
-        type:String,
+const MovieSchema = new Schema({
+    title: {
+        type: String,
         trim: true,
-        require: true
+        required: true
     },
-    description:{
+    description: {
         type: String,
         default: ""
     },
-    language :{
+    language: {
         type: String,
-        enum:["Russian","English","Uzbek"],
+        enum: ["Russian", "English", "Uzbek"],
         trim: true,
-        require: true
+        required: true
     },
-    genre : {
+    genre: {
         type: String,
-        enum:["commedy","horror","documentary","cartoon"],
+        enum: ["comedy", "horror", "documentary", "cartoon"],
         trim: true,
-        require: true
-        
-    },
-    },
-    {
-        timeStamp: true
+        required: true
     }
-);
+}, {
+    timestamps: true
+});
 
-export default Movie;
+export default model("Movie", MovieSchema);
